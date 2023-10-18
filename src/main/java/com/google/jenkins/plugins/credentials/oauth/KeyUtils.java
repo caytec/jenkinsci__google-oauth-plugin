@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import jenkins.model.Jenkins;
 import org.apache.commons.io.IOUtils;
 
@@ -43,7 +44,7 @@ public class KeyUtils {
   public static File createKeyFile(String prefix, String suffix) throws IOException {
     File keyFolder = new File(Jenkins.getInstance().getRootDir(), "gauth");
     if (keyFolder.exists() || keyFolder.mkdirs()) {
-      File result = File.createTempFile(prefix, suffix, keyFolder);
+      File result = Files.createTempFile(keyFolder.toPath(), prefix, suffix).toFile();
       if (result == null) {
         throw new IOException("Failed to create key file");
       }

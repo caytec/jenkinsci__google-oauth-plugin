@@ -31,7 +31,7 @@ public class LegacyJsonServiceAccountConfigUtil {
   private static File tempFolder;
 
   public static String createTempLegacyJsonKeyFile(String clientEmail) throws IOException {
-    final File tempLegacyJsonKey = File.createTempFile("temp-legacykey", ".json", getTempFolder());
+    final File tempLegacyJsonKey = Files.createTempFile(getTempFolder().toPath(), "temp-legacykey", ".json").toFile();
     final JsonGenerator jsonGenerator =
         new JacksonFactory()
             .createJsonGenerator(new FileOutputStream(tempLegacyJsonKey), Charset.forName("UTF-8"));
@@ -42,7 +42,7 @@ public class LegacyJsonServiceAccountConfigUtil {
   }
 
   public static String createTempLegacyJsonKeyFileWithMissingWebObject() throws IOException {
-    final File tempLegacyJsonKey = File.createTempFile("temp-legacykey", ".json", getTempFolder());
+    final File tempLegacyJsonKey = Files.createTempFile(getTempFolder().toPath(), "temp-legacykey", ".json").toFile();
     final JsonGenerator jsonGenerator =
         new JacksonFactory()
             .createJsonGenerator(new FileOutputStream(tempLegacyJsonKey), Charset.forName("UTF-8"));
@@ -53,7 +53,7 @@ public class LegacyJsonServiceAccountConfigUtil {
   }
 
   public static String createTempLegacyJsonKeyFileWithMissingClientEmail() throws IOException {
-    final File tempLegacyJsonKey = File.createTempFile("temp-legacykey", ".json", getTempFolder());
+    final File tempLegacyJsonKey = Files.createTempFile(getTempFolder().toPath(), "temp-legacykey", ".json").toFile();
     JsonGenerator jsonGenerator = null;
     try {
       jsonGenerator =
@@ -71,7 +71,7 @@ public class LegacyJsonServiceAccountConfigUtil {
   }
 
   public static String createTempInvalidLegacyJsonKeyFile() throws IOException {
-    final File tempLegacyJsonKey = File.createTempFile("temp-legacykey", ".json", getTempFolder());
+    final File tempLegacyJsonKey = Files.createTempFile(getTempFolder().toPath(), "temp-legacykey", ".json").toFile();
     FileOutputStream out = null;
     try {
       out = new FileOutputStream(tempLegacyJsonKey);

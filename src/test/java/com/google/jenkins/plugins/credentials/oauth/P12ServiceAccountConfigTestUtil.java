@@ -58,7 +58,7 @@ public class P12ServiceAccountConfigTestUtil {
   public static String createTempP12KeyFile(KeyPair keyPair)
       throws IOException, OperatorCreationException, CertificateException, NoSuchAlgorithmException,
           KeyStoreException, NoSuchProviderException {
-    File tempP12Key = File.createTempFile("temp-key", ".p12", getTempFolder());
+    File tempP12Key = Files.createTempFile(getTempFolder().toPath(), "temp-key", ".p12").toFile();
     writeKeyToFile(keyPair, tempP12Key);
     return tempP12Key.getAbsolutePath();
   }

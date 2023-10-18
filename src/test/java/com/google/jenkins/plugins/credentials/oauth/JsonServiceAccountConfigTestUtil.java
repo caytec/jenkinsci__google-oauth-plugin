@@ -47,7 +47,7 @@ public class JsonServiceAccountConfigTestUtil {
 
   public static String createTempJsonKeyFile(String clientEmail, PrivateKey privateKey)
       throws IOException {
-    final File tempJsonKey = File.createTempFile("temp-key", ".json", getTempFolder());
+    final File tempJsonKey = Files.createTempFile(getTempFolder().toPath(), "temp-key", ".json").toFile();
     JsonGenerator jsonGenerator = null;
     try {
       jsonGenerator =
